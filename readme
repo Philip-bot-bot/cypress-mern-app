@@ -41,7 +41,12 @@ ________________________________________
 •	UI Testing: Cypress
 •	API Testing: Postman
 
+Note on Automation with Newman:
+ My API endpoints required a valid token from the POST /login request to authorize subsequent requests like PUT, POST, and DELETE.
 
+Since the token is dynamically generated and typically expires after a short period, I was concerned that running the collection via Newman without a dynamic token-handling setup would cause the tests to fail or appear broken.
+
+As a result, I focused on building and validating the full set of requests manually in Postman. 
 
 
 
