@@ -1,52 +1,60 @@
- QA Automation Challenge – React + Node Todo App
-This project demonstrates automated UI and API testing for a simple Todo web application using React (frontend) and Node.js (backend).
-________________________________________
 Getting Started (Setup Instructions)
 1. Clone the Repository
 git clone https://github.com/Philip-bot-bot/mern-app.git
 git clone https://github.com/Philip-bot-bot/cypress-mern-app.git
+
 2. Install Dependencies
 npm install
+
 3. Start the Backend Server
-run npm install in root directory
+Run npm install in the root directory
 npm run server
+
 4. Start the Frontend App
-cd into client run npm install 
-make you have"react-scripts": "^5.0.1",
-The app should open on http://localhost:3000
-5. Backend and frontend run concurrently
-Run npm run dev
-________________________________________
+cd client → npm install
+Ensure "react-scripts": "^5.0.1" is in package.json
+App runs at http://localhost:3000
+
+5. Run Backend & Frontend Concurrently
+npm run dev
+
 ✅ How to Run Tests
 UI Tests (Cypress)
 npx cypress open
-# or headless mode
+or in headless mode
 npx cypress run
-Cypress tests cover login, adding/editing/deleting todos, and data validation.
-I stored custom commands in commands.js to make codes look small and clean
-________________________________________
-API Tests (Postman)
-1.	Open Postman
-2.	Import the following:
-o	Mern-app-endpoints.postman_collection.json file
-3.	Run the test cases manually or via the Collection Runner
-4.	View assertion results in the Test Results tab
-Includes both positive and negative test cases (e.g., login errors, token checks).
-5. Can be found in the postman folder
-________________________________________
+Tests cover login, add/edit/delete todos, and form validations.
+Custom commands stored in commands.js for cleaner code.
+
+API Tests (Postman + Newman)
+
+Open Postman
+
+Import Mern-app-endpoints.postman_collection.json from the postman folder
+
+Run tests via Postman or Collection Runner
+
+Includes both positive and negative test cases (e.g., login failures, token issues)
+
+Run with Newman (CLI)
+
+Make sure env.json has the token
+
+Run:
+
+bash
+Copy
+Edit
+newman run "Mern-app-endpoints.postman_collection.json" -e "env.json" -r cli,html --reporter-html-export "todo-report.html"
+View results in terminal and as an HTML report
+
 🔧 Tech Stack
-•	Frontend: React
-•	Backend: Node.js + Express
-•	Database: MongoDB 
-•	UI Testing: Cypress
-•	API Testing: Postman
+Frontend: React
 
-Note on Automation with Newman:
- My API endpoints required a valid token from the POST /login request to authorize subsequent requests like PUT, POST, and DELETE.
+Backend: Node.js + Express
 
-Since the token is dynamically generated and typically expires after a short period, I was concerned that running the collection via Newman without a dynamic token-handling setup would cause the tests to fail or appear broken.
+Database: MongoDB
 
-As a result, I focused on building and validating the full set of requests manually in Postman. 
+UI Testing: Cypress
 
-
-
+API Testing: Postman + Newman
